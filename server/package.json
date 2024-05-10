@@ -1,0 +1,42 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "This is the backend of the application",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VishalPrasanna11/GustoGo.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "ExpressJs",
+    "MERN",
+    "backend",
+    "apigateway",
+    "reverseproxy"
+  ],
+  "author": "Vishal Prasanna Sai Srunith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VishalPrasanna11/GustoGo/issues"
+  },
+  "homepage": "https://github.com/VishalPrasanna11/GustoGo#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.12.11",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
