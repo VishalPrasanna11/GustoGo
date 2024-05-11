@@ -11,7 +11,7 @@ const MainNav = () => {
                     }} 
                     variant="ghost"
                     className="font-bold"
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#B0803E'}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFBD58'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0A0A0A'}
                     >
                         Log In
