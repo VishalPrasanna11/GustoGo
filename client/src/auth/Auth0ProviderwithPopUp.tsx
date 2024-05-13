@@ -1,3 +1,6 @@
+
+
+import { useCreateMyUser } from '../api/UserApi';
 import { Auth0Provider,AppState,User } from '@auth0/auth0-react';
 import React from 'react';
 type Props = {
@@ -5,11 +8,11 @@ type Props = {
 }; 
 
 const Auth0ProviderWithPopup = ({ children }: Props) => {
-        
+    const {createUser} = useCreateMyUser();
 
-        const domain = import.meta.env.VITE_AUTH0_DOMAIN;
-        const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-        const redirectUri = import.meta.env.VITE_AUTH0_REDIRECT_URI;
+    const domain = import.meta.env.VITE_AUTH0_DOMAIN;
+    const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
+    const redirectUri = import.meta.env.VITE_AUTH0_REDIRECT_URI;
 
         if(!domain || !clientId || !redirectUri) {
             throw new Error(
@@ -25,6 +28,9 @@ const Auth0ProviderWithPopup = ({ children }: Props) => {
 
         const onRedirectCallback = (appState?:AppState,user?:User) => {
             console.log("User has been redirected to the login page",user)
+            if(user?.sub && user.email){
+                createUser({auth0id:user.sub,email:user.email});
+            }
         }
 
 

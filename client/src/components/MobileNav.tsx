@@ -3,7 +3,6 @@ import { Sheet,SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "
 import { Separator } from "@radix-ui/react-separator"
 import { Button } from "./ui/button"
 import { useAuth0 } from "@auth0/auth0-react"
-import UsernameMenu from "./UsernameMenu"
 import MobileNavLinks from "./MobileNavLinks"
 
 
