@@ -1,4 +1,4 @@
-import { Auth0Provider,AppState,User} from '@auth0/auth0-react';
+import { Auth0Provider} from '@auth0/auth0-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 type Props = {
@@ -13,15 +13,15 @@ const navigate = useNavigate();
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 const redirectUri = import.meta.env.VITE_AUTH0_REDIRECT_URI;
-
-if (!domain || !clientId || !redirectUri) {
+const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
+if (!domain || !clientId || !redirectUri || !audience) {
     throw new Error(
         "Please define the AUTH0_DOMAIN, AUTH0_CLIENT_ID, and AUTH0_REDIRECT_URI environment variables"
     );
 }
          
 
-        const onRedirectCallback = (appState?:AppState,user?:User) => {
+        const onRedirectCallback = () => {
             navigate("/auth-callback");
          
         }
@@ -34,9 +34,11 @@ if (!domain || !clientId || !redirectUri) {
                 
                 authorizationParams={{
                     redirect_uri: redirectUri,
+                    audience,
                 }}
                 
                 onRedirectCallback={onRedirectCallback}
+                
                 
             >
                 {children}
