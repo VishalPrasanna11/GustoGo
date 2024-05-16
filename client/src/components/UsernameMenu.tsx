@@ -36,7 +36,7 @@ return (
                 </Link> */}
             </DropdownMenuItem>
             <DropdownMenuItem>
-                <Link to="/myprofile" 
+                <Link to="/profile" 
                 className="font-bold"
                 onMouseOver={(e) => e.currentTarget.style.color = '#FFBD58'}
                 onMouseOut={(e) => e.currentTarget.style.color = '#0A0A0A'}

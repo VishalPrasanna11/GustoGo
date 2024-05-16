@@ -6,7 +6,7 @@ const   MobileNavLinks = () => {
     const { logout } = useAuth0();
     return (
         <>
-        <Link to="/myprofile" 
+        <Link to="/profile" 
                 className="font-bold flex bg-white items-center text-align-center text-black gap-2"
                 onMouseOver={(e) => e.currentTarget.style.color = '#FFBD58'}
                 onMouseOut={(e) => e.currentTarget.style.color = '#0A0A0A'}
