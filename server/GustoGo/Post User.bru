@@ -1,0 +1,18 @@
+meta {
+  name: Post User
+  type: http
+  seq: 2
+}
+
+post {
+  url: http:localhost:8001/api/v1/user/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "auth0id":"123444455",
+    "email":"test@test.com"
+  }
+}
