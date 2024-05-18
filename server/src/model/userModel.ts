@@ -10,14 +10,30 @@ const userSchema = new mongoose.Schema({
         email:{
             type: String,
         },
+        name:{
+            type: String,
+        },
         addressLine1:
+        {
+            type: String,
+        },
+        addressLine2:
         {
             type: String,
         },
         city:{
             type: String,
         },
+        state:{
+            type: String,
+        },
+        zipCode:{
+            type: String,
+        },
         country:{
+            type: String,
+        },
+        phone:{
             type: String,
         },
     }
