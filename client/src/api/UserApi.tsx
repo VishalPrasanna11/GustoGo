@@ -2,7 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
 
-const API_BASE_URL = import.meta.env.VITE_BASE_URL;;
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 type User = {
     auth0id: string;
