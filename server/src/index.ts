@@ -16,9 +16,9 @@ mongoose.connect(process.env.MONGO_URI as string)
 
 
 
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("Hello World!");
-// });
+app.get("/health", (req: Request, res: Response) => {
+  res.send("Health check passed! Server is up and running.");
+});
 
 const PORT = process.env.PORT || 7001;
 

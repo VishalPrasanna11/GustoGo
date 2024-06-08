@@ -3,6 +3,7 @@ import Layout from "./layouts/layout" // Import the 'Layout' component
 import HomePage from "./pages/HomePage";
 import AutHCallbackPage from "./pages/AuthCallbackPage";
 import UserProfilePage from "./pages/UserProfilePage";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 const AppRouter = () => {
     return(
@@ -14,12 +15,14 @@ const AppRouter = () => {
            
             <AutHCallbackPage/>
             } />
+            <Route element={<ProtectedRoute/>}>
             <Route path="/profile" element={
             <Layout>
                 <UserProfilePage/>
             </Layout>
            
             } />
+            </Route>
         </Routes>
     )}
 export default AppRouter;
