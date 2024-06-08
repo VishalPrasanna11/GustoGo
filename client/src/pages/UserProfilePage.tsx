@@ -1,6 +1,6 @@
 import { useUpdateMyUser, userGetMyUser } from "@/api/UserApi";
 import UserProfile from "@/forms/UserProfile/UserProfile";
-import { User } from "@/types";
+
 
 
 const UserProfilePage = () => {
