@@ -35,6 +35,23 @@ res.status(201).json(newUser.toObject());
 
 
 };
+const getCurrentUser = async(req: Request, res: Response) =>{
+    try {
+        const user = await User.findOne({ _id: req.userid });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json(user.toObject());
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Error fetching user" });
+    }
+}
+
+
+
 
 const updateUser = async(req: Request, res: Response) =>{
     try {
@@ -58,6 +75,8 @@ const updateUser = async(req: Request, res: Response) =>{
 
         // Add a response to indicate successful update
         res.status(200).json({ message: "User updated successfully" });
+        console.log("User updated successfully");
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error updating user" });
@@ -66,5 +85,6 @@ const updateUser = async(req: Request, res: Response) =>{
 export default{
     createCurrentUser,
     updateUser,
+    getCurrentUser,
 }
 

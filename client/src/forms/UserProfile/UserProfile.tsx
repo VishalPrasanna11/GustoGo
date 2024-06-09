@@ -5,12 +5,14 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import LoadingButton from '@/components/LoadingButton';
 import { Button } from '@/components/ui/button';
+import { User } from '@/types';
+import { useEffect } from 'react';
 
 const UserProfileFormSchema = z.object({
     name: z.string().min(3, "Name must be at least 3 characters"),
-    email: z.string().email().optional(),
+    email: z.string().optional(),
     addressLine1: z.string().min(3, "Address Line 1 must be at least 3 characters"),
-    addressLine2: z.string().optional(),
+    addressLine2: z.string(),
     city: z.string().min(3, "City must be at least 3 characters"),
     state: z.string().min(2, "State must be at least 2 characters"),
     zipCode: z.string().min(5, "Zip Code must be at least 5 characters"),
@@ -18,28 +20,27 @@ const UserProfileFormSchema = z.object({
     phone: z.string().min(10, "Phone must be at least 10 characters").max(10, "Phone must not exceed 10 characters"),
 });
 
-type UserProfileForm = z.infer<typeof UserProfileFormSchema>;
+export type UserProfileForm = z.infer<typeof UserProfileFormSchema>;
 
 type Props = {
-    onSave: (user: UserProfileForm) => void;
+    currentUser:User;
+    onSave: (userProfileData: UserProfileForm) => void;
     isLoading: boolean;
+  
 };
 
-const UserProfile = ({ onSave, isLoading }: Props) => {
+const UserProfile = ({ onSave, isLoading,currentUser }: Props) => {
     const form=useForm<UserProfileForm>({
     resolver: zodResolver(UserProfileFormSchema),
-        defaultValues: {
-            name: "",
-            email: "",
-            addressLine1: "",
-            addressLine2: "",
-            city: "",
-            state: "",
-            zipCode: "",
-            country: "",
-            phone: "",
-        },
+    defaultValues: currentUser,
     });
+
+    useEffect(()=>{
+        form.reset(currentUser);
+    },[currentUser,form]);
+
+
+
     return (
         <Form {...form}>
             <form 
@@ -54,12 +55,12 @@ const UserProfile = ({ onSave, isLoading }: Props) => {
                     View and update your user profile details here!
                 </FormDescription>
                 </div>
-                <FormField control={form.control} name='email' 
+                <FormField disabled control={form.control} name='email' 
                 render={({field})=>(
                     <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                            <Input {...field} disabled className='bg-white'/>
+                            <Input {...field} className='bg-white'/>
                         </FormControl>
                         
                     </FormItem>

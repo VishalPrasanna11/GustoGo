@@ -9,8 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/vi/user", userRoute);
-app.use("/api/my/restaurant", MyRestaurantRoute);
+
+app.use("/restaurant", MyRestaurantRoute);
+app.use("/user", userRoute);
 
 mongoose.connect(process.env.MONGO_URI as string)
 .then(() => console.log("Connected to MongoDB"))
@@ -18,9 +19,9 @@ mongoose.connect(process.env.MONGO_URI as string)
 
 
 
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("Hello World!");
-// });
+app.get("/health", (req: Request, res: Response) => {
+  res.send("Health check passed! Server is up and running.");
+});
 
 const PORT = process.env.PORT || 7001;
 
