@@ -28,6 +28,8 @@
   },
   "homepage": "https://github.com/VishalPrasanna11/GustoGo#readme",
   "dependencies": {
+    "@types/multer": "^1.4.11",
+    "cloudinary": "^2.2.0",
     "cores": "^0.8.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -38,6 +40,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.6.1",
     "mongoose": "^8.3.4",
+    "multer": "^1.4.5-lts.1",
     "request": "^2.88.2",
     "uuid": "^9.0.1"
   },

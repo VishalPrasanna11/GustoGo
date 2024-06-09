@@ -25,4 +25,28 @@ export const validateUserRequest = [
     body('country').isString().notEmpty().withMessage('Country is must be a string'),
     body('phone').isString().notEmpty().withMessage('Phone is must be a string'),
     handleValidationErrors
-]
+];
+
+export const validateMyRestaurantRequest = [
+
+  body('restaurantName').notEmpty().withMessage('Restaurant name is required'),
+  body('city').notEmpty().withMessage('City is required'),
+  body('country').notEmpty().withMessage('Country is required'),
+  body('deliveryPrice')
+    .isFloat({ min: 0 })
+    .withMessage('Delivery price must be a positive number'),
+  body('estimatedDeliveryTime')
+    .isInt({ min: 0 })
+    .withMessage('Estimated delivery time must be a positive integer'),
+  body("cusines").isArray().withMessage("Cuisines must be an array").not().isEmpty().withMessage("Cuisines array cannot be empty"),
+  body("menuItems").isArray().withMessage("Menu items must be an array"),
+  body("menuitems.*.name").notEmpty().withMessage("Menu  item name ia reuired"),
+  body("menuItems.*.price")
+    .isFloat({min: 0})
+    .withMessage("Menu  item price is required and must be a positve number"),
+  handleValidationErrors,    
+  
+
+
+
+];

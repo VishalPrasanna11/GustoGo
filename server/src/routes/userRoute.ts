@@ -6,7 +6,7 @@ import { validateUserRequest } from "../middlewares/validation";
 const router = express.Router();
 
 // /api/ my/user
-router.post("/", jwtCheck, userController.createCurrentUser)
+router.post("/",  userController.createCurrentUser)
 router.put("/", jwtCheck, jwtParse, validateUserRequest, userController.updateUser);
 router.get("/", jwtCheck, jwtParse,  userController.getCurrentUser);
 
