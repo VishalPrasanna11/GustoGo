@@ -64,11 +64,7 @@ export type RestaurantSearchResponse = {
   };
 };
 
-  export type MenuItem = {
-    _id: string;
-    name: string;
-    price: number;
-  };
+  
   export type RestauarantType = {
     _id: string;
     user:string;

@@ -1,4 +1,4 @@
-import { cuisineList } from "@/config/restaurant-options-config";
+import { cuisineList } from "@/config/restaurant-config";
 import { Label } from "./ui/label";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { ChangeEvent } from "react";
