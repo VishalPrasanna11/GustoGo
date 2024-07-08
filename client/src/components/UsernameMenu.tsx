@@ -44,6 +44,15 @@ return (
                     User Profile
                 </Link>
             </DropdownMenuItem>
+            <DropdownMenuItem>
+                <Link to="/restaurant" 
+                className="font-bold"
+                onMouseOver={(e) => e.currentTarget.style.color = '#FFBD58'}
+                onMouseOut={(e) => e.currentTarget.style.color = '#0A0A0A'}
+                >
+                   My Restaurant
+                </Link>
+            </DropdownMenuItem>
             <Separator />
             <DropdownMenuItem>
                 <Button
