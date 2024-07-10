@@ -9,7 +9,8 @@ import MenuSection from './MenuSection';
 import ImageSection from './ImageSection';
 import LoadingButton from '@/components/LoadingButton';
 import { Button } from '@/components/ui/button';
-import { RestauarantType } from '@/types';
+import type { MenuItem, Restaurant } from '@/types';
+import { useEffect } from 'react';
 
 const restaurantSchema = z.object({
     restaurantname: z.string({
@@ -48,7 +49,7 @@ const restaurantSchema = z.object({
 type restaurantFormData = z.infer<typeof restaurantSchema>;
 
 type Props = {
-    restaurant?: RestauarantType;
+    restaurant?: Restaurant;
     onSave: (restaurantFormData: FormData) => void;
     isLoading: boolean;
 }
@@ -63,39 +64,69 @@ const Restaurant = ({ onSave, isLoading ,restaurant}: Props) => {
         }
     });
 
-    const onSubmit = (formDataJson: restaurantFormData) => {
-        console.log("Form data (JSON):", formDataJson);
+    useEffect(() => {
+        if (!restaurant) {
+          return;
+        }
+    
+      const menuItemsFormatted = restaurant.menuItems.map((item) => ({
+        ...item,
+        price: parseInt((item.price / 100).toFixed(2)),
+      }));
+      const deliveryPriceFormatted = parseInt(
+        (restaurant.deliveryPrice).toFixed(2)
+      );
+        const estimatedDeliveryTimeFormatted = parseInt(
+            (restaurant.estimatedDeliveryTime ).toFixed(0)
+        );
+  
+      const updatedRestaurant = {
+        ...restaurant,
+        menuItems: menuItemsFormatted,
+        deliveryPrice: deliveryPriceFormatted,
+        estimatedDeliveryTime: estimatedDeliveryTimeFormatted,
+      };
+  
+      form.reset(updatedRestaurant);
+    }, [form, restaurant])
 
+    const onSubmit = (formDataJson: restaurantFormData) => {
+        console.log("Calling on save");
+        console.log(formDataJson);
         const formData = new FormData();
+    
 
         formData.append('restaurantName', formDataJson.restaurantname);
         formData.append('city', formDataJson.city);
         formData.append('country', formDataJson.country);
-        formData.append('deliveryPrice', String(formDataJson.deliveryPrice));
-        formData.append('estimatedDeliveryTime', String(formDataJson.estimatedDeliveryTime));
+        formData.append('deliveryPrice', formDataJson.deliveryPrice.toString());
+        formData.append('estimatedDeliveryTime', formDataJson.estimatedDeliveryTime.toString());
         
         formDataJson.cuisines.forEach((cuisine, index) => {
-            formData.append(`cuisines[${index}]`, cuisine);
+            formData.append(`cuisines[]`, cuisine);
         });
         
-        formDataJson.menuItems.forEach((menuItem, index) => {
-            formData.append(`menuItems[${index}].name`, menuItem.name);
-            formData.append(`menuItems[${index}].price`, String(menuItem.price));
-        });
-        
-        if (formDataJson.imageFile) {
+      
+formDataJson.menuItems.forEach((menuItem, index) => {
+    formData.append(`menuItems[${index}][name]`, menuItem.name);
+    formData.append(`menuItems[${index}][price]`, menuItem.price.toString());
+});
+    if (formDataJson.imageFile) {
+        console.log("Image file is present");
             formData.append('imageFile', formDataJson.imageFile);
+        }else{
+            console.log("Image file is not present");
+           
         }
 
-        console.log("Form data (FormData):", formData);
-        debugger; // Pause execution here to inspect formData
+       
         onSave(formData);
     };
 
     return (
         <FormProvider {...form}>
             <form
-                onSubmit={form.handleSubmit(()=>onSubmit)}
+                onSubmit={form.handleSubmit(onSubmit)}
                 className='space-y-8 bg-gray-50 p-8 rounded-lg shadow-md'
             >
                 <DetailsSection />
@@ -105,7 +136,7 @@ const Restaurant = ({ onSave, isLoading ,restaurant}: Props) => {
                 <MenuSection />
                 <Separator />
                 <ImageSection />
-                {isLoading ? <LoadingButton /> : <Button type="submit">Submit</Button>}
+                {isLoading ? <LoadingButton /> :<Button type="submit">Submit</Button>}
             </form>
         </FormProvider>
     )
