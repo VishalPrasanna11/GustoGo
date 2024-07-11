@@ -1,27 +1,51 @@
 import express from "express";
-import multer from 'multer';
+import multer from "multer";
 import MyRestaurantController from "../controllers/MyRestaurantController";
 import { jwtCheck, jwtParse } from "../middlewares/auth";
 import { validateMyRestaurantRequest } from "../middlewares/validation";
 
-
-// Multer is a middleware for handling multipart/form-data, 
-// which is primarily used for uploading files in Node.js applications. It is commonly used with the Express web application framework. multipart/form-data is a MIME type that allows you to send files, along with other form data, to the server.
 const router = express.Router();
 
 const storage = multer.memoryStorage();
 const upload = multer({
-    storage: storage,
-        limits: {
-            fileSize: 5*1024*1024,//5mb
-        },
-    });
-    
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024, //5mb
+  },
+});
 
+// router.get(
+//   "/order",
+//   jwtCheck,
+//   jwtParse,
+//   MyRestaurantController
+// );
 
+// router.patch(
+//   "/order/:orderId/status",
+//   jwtCheck,
+//   jwtParse,
+//   MyRestaurantController.updateOrderStatus
+// );
 
+router.get("/", jwtCheck, jwtParse, MyRestaurantController.getRestaurant);
 
-//api/my/restaurant
-router.post("/",upload.single("imageFile"),validateMyRestaurantRequest,jwtCheck,jwtParse,MyRestaurantController.createMyRestaurant);
+router.post(
+  "/",
+  upload.single("imageFile"),
+  //validateMyRestaurantRequest,
+  jwtCheck,
+  jwtParse,
+  MyRestaurantController.createMyRestaurant
+);
+
+router.put(
+  "/",
+  upload.single("imageFile"),
+//  validateMyRestaurantRequest,
+  jwtCheck,
+  jwtParse,
+  MyRestaurantController.updateMyRestaurant
+);
 
 export default router;
