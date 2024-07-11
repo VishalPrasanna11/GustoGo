@@ -1,8 +1,8 @@
-import { useCreateRestaurant } from "@/api/RestuarantApi";
+import { useCreateMyRestaurant } from "@/api/MyRestaurantApi";
 import Restaurant from "@/forms/Restaurant/Restaurant"
 
 const RestauarantPage = () => {
-    const {createRestaurant,isLoading,} = useCreateRestaurant();
+    const {createRestaurant,isLoading,} = useCreateMyRestaurant();
     return (
        <Restaurant onSave={createRestaurant} isLoading={isLoading}/>
     )

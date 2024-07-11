@@ -85,7 +85,4 @@ const getRestaurant = async (req: Request, res: Response) => {
     }
   };
   
-  export default {
-    getRestaurant,
-    searchRestaurant,
-  };
+  export default { getRestaurant, searchRestaurant };
