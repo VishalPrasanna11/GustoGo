@@ -23,7 +23,7 @@ export type Restaurant = {
   estimatedDeliveryTime: number;
   cuisines: string[];
   menuItems: MenuItem[];
-  imageUrl: string;
+  // imageUrl: string;
   lastUpdated: string;
 };
 
@@ -63,18 +63,3 @@ export type RestaurantSearchResponse = {
     pages: number;
   };
 };
-
-  
-  export type RestauarantType = {
-    _id: string;
-    user:string;
-    restaurantName: string;
-    city: string;
-    country: string;
-    deliveryPrice: number;
-    estimatedDeliveryTime: number;
-    cuisines: string[];
-    menuItems: MenuItem[];
-    imageUrl: string;
-    lastUpdate: string;
-  };
