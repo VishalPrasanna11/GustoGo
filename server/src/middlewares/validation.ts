@@ -28,7 +28,6 @@ export const validateUserRequest = [
 ];
 
 export const validateMyRestaurantRequest = [
-
   body('restaurantName').notEmpty().withMessage('Restaurant name is required'),
   body('city').notEmpty().withMessage('City is required'),
   body('country').notEmpty().withMessage('Country is required'),

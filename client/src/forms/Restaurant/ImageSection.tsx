@@ -13,7 +13,6 @@ const ImageSection = () => {
   const { control, watch } = useFormContext();
 
   const existingImageUrl = watch("imageUrl");
-
   return (
     <div className="space-y-2">
       <div>

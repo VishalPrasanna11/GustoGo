@@ -1,10 +1,9 @@
-import { MenuItem, Order, Restaurant } from "@/types";
+import { Order, Restaurant } from "@/types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_BASE_URL;
-
 
 export const useGetMyRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -32,15 +31,18 @@ export const useGetMyRestaurant = () => {
 
   return { restaurant, isLoading };
 };
+
 export const useCreateMyRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
+
   const createMyRestaurantRequest = async (
     restaurantFormData: FormData
-    
   ): Promise<Restaurant> => {
-    console.log("Api called here");
-    console.log(restaurantFormData);
     const accessToken = await getAccessTokenSilently();
+
+    let  cuisines = restaurantFormData.getAll("menuItems");
+    console.log("API", cuisines);
+    
 
     const response = await fetch(`${API_BASE_URL}/restaurant`, {
       method: "POST",
@@ -49,13 +51,14 @@ export const useCreateMyRestaurant = () => {
       },
       body: restaurantFormData,
     });
-
+  
     if (!response.ok) {
       throw new Error("Failed to create restaurant");
     }
-
+  
     return response.json();
   };
+
   const {
     mutate: createRestaurant,
     isLoading,
@@ -73,6 +76,7 @@ export const useCreateMyRestaurant = () => {
 
   return { createRestaurant, isLoading };
 };
+
 export const useUpdateMyRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
 
@@ -81,7 +85,7 @@ export const useUpdateMyRestaurant = () => {
   ): Promise<Restaurant> => {
     const accessToken = await getAccessTokenSilently();
 
-    const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
+    const response = await fetch(`${API_BASE_URL}/restaurant`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -120,7 +124,7 @@ export const useGetMyRestaurantOrders = () => {
   const getMyRestaurantOrdersRequest = async (): Promise<Order[]> => {
     const accessToken = await getAccessTokenSilently();
 
-    const response = await fetch(`${API_BASE_URL}/api/my/restaurant/order`, {
+    const response = await fetch(`${API_BASE_URL}/restaurant/order`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
@@ -156,7 +160,7 @@ export const useUpdateMyRestaurantOrder = () => {
     const accessToken = await getAccessTokenSilently();
 
     const response = await fetch(
-      `${API_BASE_URL}/api/my/restaurant/order/${updateStatusOrderRequest.orderId}/status`,
+      `${API_BASE_URL}/restaurant/order/${updateStatusOrderRequest.orderId}/status`,
       {
         method: "PATCH",
         headers: {
