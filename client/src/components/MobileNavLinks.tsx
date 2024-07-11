@@ -14,6 +14,14 @@ const   MobileNavLinks = () => {
         >
                     User Profile
         </Link>
+        <Link to="/restaurant" 
+                className="font-bold flex bg-white items-center text-align-center text-black gap-2"
+                onMouseOver={(e) => e.currentTarget.style.color = '#FFBD58'}
+                onMouseOut={(e) => e.currentTarget.style.color = '#0A0A0A'}
+
+        >
+                    My Restaurant
+        </Link>
         <Button
                     onClick={() => logout()}
                     className="flex items-center px-3 font-bold bg-black text-white"
