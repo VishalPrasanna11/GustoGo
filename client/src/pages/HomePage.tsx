@@ -6,7 +6,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const handleSearchSubmit =(searchFormValues: SearchForm) => {
     navigate({
-      pathname: `/search${searchFormValues.searchQuery}`,
+      pathname: `/search/${searchFormValues.searchQuery}`,
     })
   }
   return (

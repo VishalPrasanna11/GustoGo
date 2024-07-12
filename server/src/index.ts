@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use("/restaurant", MyRestaurantRoute);
 app.use("/user", userRoute);
-app.use("/restaurant", restaurantRoute);
+app.use("/rest", restaurantRoute);
 
 mongoose.connect(process.env.MONGO_URI as string)
 .then(() => console.log("Connected to MongoDB"))
