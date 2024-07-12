@@ -1,0 +1,17 @@
+meta {
+  name: SearchRest
+  type: http
+  seq: 3
+}
+
+get {
+  url: https:localhost:8001/rest/search/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "city":"Boston"
+  }
+}
