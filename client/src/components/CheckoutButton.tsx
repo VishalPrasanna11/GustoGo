@@ -5,8 +5,8 @@ import LoadingButton from "./LoadingButton";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import UserProfileForm, {
   UserFormData,
-} from "@/forms/user-profile-form/UserProfileForm";
-import { useGetMyUser } from "@/api/MyUserApi";
+} from "@/forms/UserProfile/UserProfile";
+import { userGetMyUser } from "@/api/UserApi";
 
 type Props = {
   onCheckout: (userFormData: UserFormData) => void;
@@ -23,7 +23,7 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
 
   const { pathname } = useLocation();
 
-  const { currentUser, isLoading: isGetUserLoading } = useGetMyUser();
+  const { currentUser, isLoading: isGetUserLoading } = userGetMyUser();
 
   const onLogin = async () => {
     await loginWithRedirect({

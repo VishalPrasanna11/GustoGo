@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { MenuItem as MenuItemType } from "../types";
 import CheckoutButton from "@/components/CheckoutButton";
-import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
+import { UserFormData } from "@/forms/UserProfile/UserProfile";
 import { useCreateCheckoutSession } from "@/api/OrderApi";
 
 export type CartItem = {
