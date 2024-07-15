@@ -40,7 +40,7 @@ export const useCreateMyRestaurant = () => {
   ): Promise<Restaurant> => {
     const accessToken = await getAccessTokenSilently();
 
-    let  cuisines = restaurantFormData.getAll("menuItems");
+    const cuisines = restaurantFormData.getAll("menuItems");
     console.log("API", cuisines);
     
 

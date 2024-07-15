@@ -6,6 +6,7 @@ import userRoute from "./routes/userRoute";
 import MyRestaurantRoute from "./routes/MyRestaurantRoute";
 import restaurantRoute  from "./routes/RestaurantRoute";
 import {v2 as cloudinary} from "cloudinary";
+import orderRoute from "./routes/OrderRoute";
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/restaurant", MyRestaurantRoute);
 app.use("/user", userRoute);
 app.use("/rest", restaurantRoute);
+app.use("/api/order", orderRoute);
 
 mongoose.connect(process.env.MONGO_URI as string)
 .then(() => console.log("Connected to MongoDB"))
