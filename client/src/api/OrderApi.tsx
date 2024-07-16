@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const useGetMyOrders = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -11,7 +11,7 @@ export const useGetMyOrders = () => {
   const getMyOrdersRequest = async (): Promise<Order[]> => {
     const accessToken = await getAccessTokenSilently();
 
-    const response = await fetch(`${API_BASE_URL}/api/order`, {
+    const response = await fetch(`${API_BASE_URL}/order`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -59,7 +59,7 @@ export const useCreateCheckoutSession = () => {
     const accessToken = await getAccessTokenSilently();
 
     const response = await fetch(
-      `${API_BASE_URL}/api/order/checkout/create-checkout-session`,
+      `${API_BASE_URL}/order/checkout/create-checkout-session`,
       {
         method: "POST",
         headers: {

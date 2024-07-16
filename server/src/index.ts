@@ -7,16 +7,21 @@ import MyRestaurantRoute from "./routes/MyRestaurantRoute";
 import restaurantRoute  from "./routes/RestaurantRoute";
 import {v2 as cloudinary} from "cloudinary";
 import orderRoute from "./routes/OrderRoute";
-
+import WebhookRoute from "./routes/WebHookRoute";
 const app = express();
 app.use(cors());
+
+app.use("/checkout/", express.raw({ type: "application/json" }),WebhookRoute);
+
 app.use(express.json());
 
 
 app.use("/restaurant", MyRestaurantRoute);
 app.use("/user", userRoute);
 app.use("/rest", restaurantRoute);
-app.use("/api/order", orderRoute);
+app.use("/order", orderRoute);
+
+
 
 mongoose.connect(process.env.MONGO_URI as string)
 .then(() => console.log("Connected to MongoDB"))
