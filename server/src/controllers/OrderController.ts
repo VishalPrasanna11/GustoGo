@@ -127,7 +127,7 @@ const createLineItems = (
 
     const line_item: Stripe.Checkout.SessionCreateParams.LineItem = {
       price_data: {
-        currency: "gbp",
+        currency: "usd",
         unit_amount: menuItem.price,
         product_data: {
           name: menuItem.name,
@@ -157,7 +157,7 @@ const createSession = async (
           type: "fixed_amount",
           fixed_amount: {
             amount: deliveryPrice,
-            currency: "gbp",
+            currency: "usd",
           },
         },
       },
@@ -170,7 +170,8 @@ const createSession = async (
     success_url: `${FRONTEND_URL}/order-status?success=true`,
     cancel_url: `${FRONTEND_URL}/detail/${restaurantId}?cancelled=true`,
   });
-
+  let ss = `${FRONTEND_URL}/order-status?success=true`
+  console.log("This is redirect url",ss);
   return sessionData;
 };
 
