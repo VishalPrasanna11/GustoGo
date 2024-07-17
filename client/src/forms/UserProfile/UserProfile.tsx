@@ -15,13 +15,18 @@ import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
 import { User } from "@/types";
 import { useEffect } from "react";
+import { stat } from "fs";
 
 const formSchema = z.object({
   email: z.string().optional(),
   name: z.string().min(1, "name is required"),
   addressLine1: z.string().min(1, "Address Line 1 is required"),
+  addressLine2: z.string().min(1, "Address Line 2 is required"),
   city: z.string().min(1, "City is required"),
   country: z.string().min(1, "Country is required"),
+  state: z.string().min(1, "State is required"),
+  phone: z.string().min(1, "Phone is required"),
+  zipCode: z.string().min(1, "Zip Code is required"),
 });
 
 export type UserFormData = z.infer<typeof formSchema>;
