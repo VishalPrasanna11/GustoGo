@@ -16,7 +16,7 @@ const HomePage = () => {
        Savor the Flavor, Wherever You Are! 
        </h1>
        <span className="text-xl">Food is just a click away!</span>
-       <SearchBar placeHolder="Search for restaurants, dishes, or cuisines"  onSubmit={handleSearchSubmit} />
+       <SearchBar placeHolder="Search for City or Town"  onSubmit={handleSearchSubmit} />
       </div>
       <div className="grid md:grid-cols-2 gap-5">
       <img src={mobileimg}/>
