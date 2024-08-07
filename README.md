@@ -129,7 +129,7 @@ The application is deployed on Render.com. To deploy:
 - **Manage Orders:** Track your orders and see the history of your past orders.
 
 ## Contributing
-Special thanks to : Sai Srunith (silvery.s@northeastern.edu)
+Special thanks to : Sai Srunith (silvery.s@northeastern.edu)   
 Contributions are welcome! Please submit a pull request or open an issue to discuss your ideas.
 
 ## License
